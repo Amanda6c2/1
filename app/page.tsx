@@ -46,7 +46,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="container mx-auto px-4 py-12"
+          className="container mx-auto py-8 sm:py-12"
         >
           {currentView === 'countries' && (
             <CountrySelector
@@ -77,10 +77,10 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="container mx-auto px-4 py-8 mt-12"
+          className="container mx-auto px-4 py-6 sm:py-8 mt-8 sm:mt-12"
         >
           <div className="text-center text-gray-600 dark:text-gray-400">
-            <p className="text-sm">
+            <p className="text-xs sm:text-sm">
               This is a demo service. Numbers and codes are simulated for demonstration purposes.
             </p>
           </div>

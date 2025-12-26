@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Receive SMS Online - Temporary Phone Numbers',
   description: 'Receive SMS verification codes online with temporary phone numbers',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
   openGraph: {
     images: [
       {

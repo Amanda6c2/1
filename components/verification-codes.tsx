@@ -65,35 +65,35 @@ export function VerificationCodes({ country, phone, onBack }: VerificationCodesP
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.button
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         whileHover={{ x: -5 }}
         onClick={onBack}
-        className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors mb-8"
+        className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors mb-6 sm:mb-8"
       >
         <ArrowLeft className="w-5 h-5" />
-        <span className="text-lg">Back</span>
+        <span className="text-base sm:text-lg">Back</span>
       </motion.button>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50 mb-8"
+        className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl border border-gray-200/50 dark:border-gray-700/50 mb-6 sm:mb-8"
       >
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-4">
-            <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
-              <Phone className="w-8 h-8 text-white" />
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div className="flex items-center space-x-3 sm:space-x-4">
+            <div className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+              <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Your Number</p>
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">Your Number</p>
               <div className="flex items-center space-x-2">
-                <span className="text-3xl font-semibold text-gray-900 dark:text-white font-mono">
+                <span className="text-lg sm:text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white font-mono">
                   {phone.countryCode} {phone.number}
                 </span>
-                <span className="text-2xl">{country.flag}</span>
+                <span className="text-xl sm:text-2xl">{country.flag}</span>
               </div>
             </div>
           </div>
@@ -103,9 +103,9 @@ export function VerificationCodes({ country, phone, onBack }: VerificationCodesP
             whileTap={{ scale: 0.95 }}
             onClick={handleRefresh}
             disabled={isRefreshing}
-            className="p-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
+            className="p-3 sm:p-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 flex-shrink-0"
           >
-            <RefreshCw className={`w-6 h-6 ${isRefreshing ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-5 h-5 sm:w-6 sm:h-6 ${isRefreshing ? 'animate-spin' : ''}`} />
           </motion.button>
         </div>
 
@@ -116,10 +116,10 @@ export function VerificationCodes({ country, phone, onBack }: VerificationCodesP
       </motion.div>
 
       <div className="mb-6">
-        <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+        <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-2">
           Verification Codes
         </h3>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
           Messages will appear here automatically. Codes expire after 5 minutes.
         </p>
       </div>
@@ -148,44 +148,42 @@ export function VerificationCodes({ country, phone, onBack }: VerificationCodesP
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ delay: index * 0.05 }}
-                className={`relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border ${
+                className={`relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-xl transition-all duration-300 border ${
                   code.expired
                     ? 'border-red-200/50 dark:border-red-900/50 opacity-60'
                     : 'border-gray-200/50 dark:border-gray-700/50'
                 }`}
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-3 mb-3">
-                      <span className="text-lg font-semibold text-gray-900 dark:text-white">
-                        {code.service}
+                <div className="flex flex-col space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+                      {code.service}
+                    </span>
+                    {code.expired && (
+                      <span className="flex items-center space-x-1 text-xs text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/30 px-2 py-1 rounded-full">
+                        <AlertCircle className="w-3 h-3" />
+                        <span>Expired</span>
                       </span>
-                      {code.expired && (
-                        <span className="flex items-center space-x-1 text-xs text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/30 px-2 py-1 rounded-full">
-                          <AlertCircle className="w-3 h-3" />
-                          <span>Expired</span>
-                        </span>
-                      )}
-                    </div>
+                    )}
+                  </div>
 
-                    <div className="flex items-center space-x-4 mb-3">
-                      <span className="text-4xl font-bold text-gray-900 dark:text-white font-mono tracking-wider">
-                        {code.code}
-                      </span>
-                      <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={() => handleCopy(code.code)}
-                        className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
-                      >
-                        <Copy className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                      </motion.button>
-                    </div>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white font-mono tracking-wider">
+                      {code.code}
+                    </span>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={() => handleCopy(code.code)}
+                      className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors flex-shrink-0"
+                    >
+                      <Copy className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                    </motion.button>
+                  </div>
 
-                    <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
-                      <Clock className="w-4 h-4" />
-                      <span>{formatTime(code.timestamp)}</span>
-                    </div>
+                  <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                    <Clock className="w-4 h-4" />
+                    <span>{formatTime(code.timestamp)}</span>
                   </div>
                 </div>
               </motion.div>
@@ -198,26 +196,26 @@ export function VerificationCodes({ country, phone, onBack }: VerificationCodesP
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border border-blue-200/50 dark:border-blue-800/50"
+        className="mt-8 sm:mt-12 p-4 sm:p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl sm:rounded-2xl border border-blue-200/50 dark:border-blue-800/50"
       >
-        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+        <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3 sm:mb-2">
           How to use
         </h4>
-        <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+        <ul className="space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">
           <li className="flex items-start space-x-2">
-            <span className="text-blue-500 mt-1">1.</span>
+            <span className="text-blue-500 mt-1 flex-shrink-0">1.</span>
             <span>Use this number to register on any service</span>
           </li>
           <li className="flex items-start space-x-2">
-            <span className="text-blue-500 mt-1">2.</span>
+            <span className="text-blue-500 mt-1 flex-shrink-0">2.</span>
             <span>Verification codes will appear here automatically</span>
           </li>
           <li className="flex items-start space-x-2">
-            <span className="text-blue-500 mt-1">3.</span>
+            <span className="text-blue-500 mt-1 flex-shrink-0">3.</span>
             <span>Click the copy button to copy the code</span>
           </li>
           <li className="flex items-start space-x-2">
-            <span className="text-blue-500 mt-1">4.</span>
+            <span className="text-blue-500 mt-1 flex-shrink-0">4.</span>
             <span>Codes expire after 5 minutes for security</span>
           </li>
         </ul>
